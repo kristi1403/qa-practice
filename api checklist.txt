@@ -1,0 +1,50 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 # API Checklist: Login Endpoint (`POST /api/login`)\
+\
+### \uc0\u55357 \u56580  Request Parameters\
+\
+| Field     | Required | Type   | Notes                        |\
+|-----------|----------|--------|------------------------------|\
+| email     | Yes      | String | Must be valid email format   |\
+| password  | Yes      | String | Min 6 characters             |\
+\
+---\
+\
+### \uc0\u9989  Positive Test Cases\
+\
+- [ ] Valid email + valid password \uc0\u8594  200 OK + token in response  \
+- [ ] Valid email + valid password (with spaces) \uc0\u8594  trimmed + success  \
+- [ ] Response includes fields: `token`, `userId`\
+\
+---\
+\
+### \uc0\u55357 \u57003  Negative Test Cases\
+\
+- [ ] Empty email \uc0\u8594  400 Bad Request  \
+- [ ] Empty password \uc0\u8594  400  \
+- [ ] Invalid email format \uc0\u8594  400  \
+- [ ] Wrong password \uc0\u8594  401 Unauthorized  \
+- [ ] SQL injection attempt \uc0\u8594  properly rejected  \
+- [ ] Too many login attempts \uc0\u8594  429 Too Many Requests\
+\
+---\
+\
+### \uc0\u55357 \u57057 \u65039  Security Checks\
+\
+- [ ] Password is not returned in response  \
+- [ ] Rate limiting is enforced  \
+- [ ] Response time < 1000ms\
+\
+---\
+\
+### \uc0\u55357 \u56526  Notes\
+\
+- Endpoint must return JSON  \
+- Token must be string and not empty  \
+}
